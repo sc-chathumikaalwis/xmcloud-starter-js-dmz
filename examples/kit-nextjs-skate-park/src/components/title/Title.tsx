@@ -26,21 +26,19 @@ interface TitleProps extends ComponentProps {
   };
 }
 
-// This is a lint error - missing type annotation and semicolon
 interface ComponentContentProps {
   id?: string;
   styles?: string;
   children: React.ReactNode;
 }
 
-// This is a TypeScript syntax error - missing return type and semicolon
-const ComponentContent = ({ id, styles = '', children }: ComponentContentProps) => (
+const ComponentContent = ({ id, styles = '', children }: ComponentContentProps): JSX.Element => (
   <div className={`component title ${styles.trim()}`} id={id}>
     <div className="component-content">
       <div className="field-title">{children}</div>
     </div>
   </div>
-;
+);
 
 export const Default = ({ params, fields }: TitleProps): JSX.Element => {
   const { page } = useSitecore();
