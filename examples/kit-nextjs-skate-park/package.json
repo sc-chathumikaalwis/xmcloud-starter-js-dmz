@@ -58,6 +58,9 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production npm-run-all --serial sitecore-tools:generate-map sitecore-tools:build next:build",
     "lint": "eslint ./src/**/*.tsx ./src/**/*.ts",
+    "prettier": "prettier --write ./src/**/*.{ts,tsx,js,jsx,json,css,md}",
+    "format:check": "prettier --check ./src/**/*.{ts,tsx,js,jsx,json,css,md}",
+    "type-check": "tsc --noEmit",
     "test": "echo 'No tests implemented yet' && exit 0",
     "next:build": "next build",
     "next:dev": "cross-env NODE_OPTIONS='--inspect' next dev",

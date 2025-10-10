@@ -100,7 +100,7 @@ jobs:
                 echo "✅ Formatting check passed for $starter"
               else
                 echo "❌ Formatting check failed for $starter"
-                echo "Run 'npm run format' to fix formatting issues"
+                echo "Run 'npm run prettier' to fix formatting issues"
                 exit 1
               fi
               
@@ -208,7 +208,7 @@ jobs:
             **Next Steps:**
             ${'${{ job.status }}' === 'success' ? 
               '- ✅ PR is ready for review and merge to dmz branch' : 
-              '- ❌ Please fix the issues above before merging\n- Run `npm run format` to fix formatting issues\n- Check the build logs for specific errors'
+              '- ❌ Please fix the issues above before merging\n- Run `npm run prettier` to fix formatting issues\n- Check the build logs for specific errors'
             }
             
             ---

@@ -80,6 +80,7 @@ jobs:
                 echo "✅ Formatting check passed for $starter"
               else
                 echo "❌ Formatting check failed for $starter"
+                echo "Run 'npm run prettier' to fix formatting issues"
                 exit 1
               fi
               
