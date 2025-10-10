@@ -32,28 +32,28 @@ jobs:
           if [ -d "examples/kit-nextjs-skate-park" ]; then
             echo "Installing dependencies for kit-nextjs-skate-park..."
             cd examples/kit-nextjs-skate-park
-            npm ci
+            npm install
             cd ../..
           fi
 
           if [ -d "examples/kit-nextjs-article-starter" ]; then
             echo "Installing dependencies for kit-nextjs-article-starter..."
             cd examples/kit-nextjs-article-starter
-            npm ci
+            npm install
             cd ../..
           fi
 
           if [ -d "examples/kit-nextjs-location-finder" ]; then
             echo "Installing dependencies for kit-nextjs-location-finder..."
             cd examples/kit-nextjs-location-finder
-            npm ci
+            npm install
             cd ../..
           fi
 
           if [ -d "examples/kit-nextjs-product-listing" ]; then
             echo "Installing dependencies for kit-nextjs-product-listing..."
             cd examples/kit-nextjs-product-listing
-            npm ci
+            npm install
             cd ../..
           fi
 
