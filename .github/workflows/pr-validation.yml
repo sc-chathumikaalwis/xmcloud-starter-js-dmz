@@ -117,6 +117,10 @@ jobs:
               echo "Type checking $starter..."
               cd "examples/$starter"
               
+              # Generate Sitecore files first (needed for type checking)
+              echo "Generating Sitecore configuration files..."
+              npm run sitecore-tools:generate-map
+              
               if npm run type-check 2>/dev/null; then
                 echo "✅ Type checking passed for $starter"
               else
