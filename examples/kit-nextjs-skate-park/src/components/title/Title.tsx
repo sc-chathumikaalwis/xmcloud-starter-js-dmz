@@ -40,7 +40,7 @@ const ComponentContent = ({ id, styles = '', children }: ComponentContentProps) 
       <div className="field-title">{children}</div>
     </div>
   </div>
-);
+;
 
 export const Default = ({ params, fields }: TitleProps): JSX.Element => {
   const { page } = useSitecore();
