@@ -1,6 +1,7 @@
 /* component-richtext-content */
 
-.content, .rich-text {
+.content,
+.rich-text {
   @apply border-transparent leading-[1.5] text-[12px] overflow-hidden;
 
   * {
@@ -47,5 +48,5 @@
 /* base rich text */
 
 .rich-text {
-  @apply text-[16px] max-mobile-large:p-[0_30px_10px_30px] max-mobile-large:text-[14px] ;
+  @apply text-[16px] max-mobile-large:p-[0_30px_10px_30px] max-mobile-large:text-[14px];
 }

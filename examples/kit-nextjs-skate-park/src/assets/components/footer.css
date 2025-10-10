@@ -2,7 +2,7 @@ footer {
   @apply max-mobile-large:pt-0;
 
   .container-dark-background {
-    @apply bg-bg-dark-gray
+    @apply bg-bg-dark-gray;
   }
 
   .contacts {
@@ -12,7 +12,8 @@ footer {
       @apply text-text-white;
     }
 
-    p, span {
+    p,
+    span {
       @apply text-text-white;
     }
   }

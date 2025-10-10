@@ -1,8 +1,7 @@
-
 /* boxed */
 .boxed {
   @apply box-border my-[20px] mx-0 max-mobile-large:p-[10px] max-mobile:p-[10px];
-  >div {
+  > div {
     @apply max-w-[960px] mx-auto! my-0!;
   }
 }
@@ -10,13 +9,12 @@
 /* clearfix */
 .component-content-clearfix {
   .component-content:after {
-      @apply content-none table clear-both;
+    @apply content-none table clear-both;
   }
 }
 .component-clearfix:after {
   @apply content-none table clear-both;
 }
-
 
 /* highlighted */
 .highlighted-top {
@@ -79,8 +77,8 @@
   text-decoration: none;
   font-weight: bold;
   &:hover {
-      color: var(--color-text-basic);
-      background: var(--color-bg-light-gray);
+    color: var(--color-text-basic);
+    background: var(--color-bg-light-gray);
   }
 }
 
@@ -90,7 +88,9 @@
   }
 }
 .link.link-button {
-  .is-empty-hint, .field-link span, a {
+  .is-empty-hint,
+  .field-link span,
+  a {
     @apply default-link-button;
   }
 }
@@ -109,7 +109,7 @@
   .component-content {
     @apply bg-center bg-no-repeat bg-cover h-[800px] max-mobile-large:h-[300px];
   }
-  
+
   .sc-image-wrapper {
     @apply opacity-0;
   }

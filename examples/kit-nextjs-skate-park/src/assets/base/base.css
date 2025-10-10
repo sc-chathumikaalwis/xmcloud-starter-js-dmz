@@ -1,13 +1,15 @@
-
-.button-default, .default {
+.button-default,
+.default {
   @apply default-link-button bg-bg-submenu-active text-text-basic;
 }
 
-.button-success, .success {
+.button-success,
+.success {
   @apply default-link-button bg-btn-green-light text-text-white hover:text-text-white hover:bg-btn-green;
 }
 
-.button-warning, .warning {
+.button-warning,
+.warning {
   @apply default-link-button bg-btn-red text-text-white hover:text-text-white hover:bg-btn-red-active;
 }
 

@@ -78,8 +78,8 @@
   --text-shadow-offset-y: 0;
   --text-shadow-blur: var(--blur-default);
   --text-shadow-color: rgba(0, 0, 0, 1);
-  text-shadow: var(--text-shadow-offset-x) var(--text-shadow-offset-y)
-    var(--text-shadow-blur) var(--text-shadow-color);
+  text-shadow: var(--text-shadow-offset-x) var(--text-shadow-offset-y) var(--text-shadow-blur)
+    var(--text-shadow-color);
 }
 
 @utility text-shadow-blur-none {
@@ -153,41 +153,50 @@
 @layer base {
   * {
     @apply border-border;
-    font-family:var(--font-body);
+    font-family: var(--font-body);
   }
-  h1, .h1,
-  h2, .h2,
-  h3, .h3,
-  h4, .h4
-  h5, .h5
-  h6, .h6 {
-     font-family:var(--font-heading);
-     @apply font-light leading-tight;
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3,
+  h4,
+  .h4 h5,
+  .h5 h6,
+  .h6 {
+    font-family: var(--font-heading);
+    @apply font-light leading-tight;
   }
 
-  h1, .h1 {
+  h1,
+  .h1 {
     @apply text-6xl @md:text-8xl;
   }
-  h2, .h2 {
+  h2,
+  .h2 {
     @apply text-5xl @md:text-7xl;
   }
-  h3, .h3 {
+  h3,
+  .h3 {
     @apply text-4xl @md:text-5xl;
   }
-  h4, .h4 {
+  h4,
+  .h4 {
     @apply text-2xl @md:text-3xl;
   }
-  h5, .h5 {
+  h5,
+  .h5 {
     @apply text-xl @md:text-2xl;
   }
 
   body {
     @apply bg-background text-foreground;
     font-feature-settings:
-      "rlig" 1,
-      "calt" 1;
+      'rlig' 1,
+      'calt' 1;
   }
   main {
-    @apply text-xl
+    @apply text-xl;
   }
 }

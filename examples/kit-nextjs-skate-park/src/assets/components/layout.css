@@ -1,16 +1,16 @@
 .cover-background {
-  >.component-content {
-      @apply bg-no-repeat bg-cover
+  > .component-content {
+    @apply bg-no-repeat bg-cover;
   }
 }
 .fix-background {
-  >.component-content {
-      @apply bg-no-repeat bg-cover bg-top-left bg-fixed
+  > .component-content {
+    @apply bg-no-repeat bg-cover bg-top-left bg-fixed;
   }
 }
 .parallax-background {
-  >.component-content {
-      @apply bg-no-repeat bg-cover bg-position-[50%_0] bg-fixed max-mobile-large:bg-scroll;
+  > .component-content {
+    @apply bg-no-repeat bg-cover bg-position-[50%_0] bg-fixed max-mobile-large:bg-scroll;
   }
 }
 
@@ -30,8 +30,12 @@
 
 /* indent */
 .indent {
-  margin: 0 40px; 
-  &.col-xxl-12, &.col-xl-12, &.col-lg-12, &.col-md-12, &.col-12 {
+  margin: 0 40px;
+  &.col-xxl-12,
+  &.col-xl-12,
+  &.col-lg-12,
+  &.col-md-12,
+  &.col-12 {
     width: calc(100% - 80px);
   }
 }
