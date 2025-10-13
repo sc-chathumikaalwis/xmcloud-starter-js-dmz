@@ -73,15 +73,37 @@ jobs:
           git checkout dmz
           git pull origin dmz
           
-          # Create revert commit
-          git revert --no-edit "${{ steps.determine-commit.outputs.commit-to-revert }}"
+          # Check if the commit to revert includes workflow files
+          WORKFLOW_FILES=$(git diff-tree --no-commit-id --name-only -r "${{ steps.determine-commit.outputs.commit-to-revert }}" | grep -E '^\.github/workflows/' || true)
+          
+          if [ -n "$WORKFLOW_FILES" ]; then
+            echo "⚠️ Warning: This commit includes workflow files:"
+            echo "$WORKFLOW_FILES"
+            echo "GitHub App may not have permissions to push workflow changes."
+            echo "Attempting revert anyway..."
+          fi
+          
+          # Check if this is a merge commit
+          if git rev-parse "${{ steps.determine-commit.outputs.commit-to-revert }}^2" >/dev/null 2>&1; then
+            echo "ℹ️ Detected merge commit, using -m 1 to keep first parent"
+            git revert -m 1 --no-edit "${{ steps.determine-commit.outputs.commit-to-revert }}"
+          else
+            # Create revert commit for regular commits
+            git revert --no-edit "${{ steps.determine-commit.outputs.commit-to-revert }}"
+          fi
           
           # Push the revert commit
-          git push origin dmz
-          
-          echo "✅ Successfully reverted commit ${{ steps.determine-commit.outputs.commit-to-revert }}"
+          if git push origin dmz; then
+            echo "✅ Successfully reverted commit ${{ steps.determine-commit.outputs.commit-to-revert }}"
+          else
+            echo "❌ Failed to push revert commit"
+            echo "This may be due to workflow file permissions."
+            echo "Please manually revert the commit or grant 'workflows' permission to GitHub Actions."
+            exit 1
+          fi
 
       - name: Create issue for tracking
+        continue-on-error: true
         uses: actions/github-script@v7
         with:
           script: |
@@ -121,6 +143,7 @@ jobs:
             console.log(`Created issue #${issue.number}: ${issue.title}`);
 
       - name: Comment on recent PRs
+        continue-on-error: true
         uses: actions/github-script@v7
         with:
           script: |
@@ -185,8 +208,8 @@ jobs:
           echo "**Actions Taken:**" >> $GITHUB_STEP_SUMMARY
           echo "- ✅ Commit reverted from dmz branch" >> $GITHUB_STEP_SUMMARY
           echo "- ✅ Revert commit pushed to dmz" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ Tracking issue created" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ Related PRs notified" >> $GITHUB_STEP_SUMMARY
+          echo "- ℹ️ Tracking issue (optional - requires Issues enabled)" >> $GITHUB_STEP_SUMMARY
+          echo "- ℹ️ PR notifications (optional - requires Issues enabled)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Next Steps:**" >> $GITHUB_STEP_SUMMARY
           echo "1. DMZ validation will run automatically" >> $GITHUB_STEP_SUMMARY
