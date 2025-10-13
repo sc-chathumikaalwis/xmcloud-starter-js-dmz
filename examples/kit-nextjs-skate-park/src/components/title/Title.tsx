@@ -1,6 +1,7 @@
 import { Link, LinkField, Text, TextField, useSitecore } from '@sitecore-content-sdk/nextjs';
 import React, { JSX } from 'react';
 import { ComponentProps } from 'lib/component-props';
+import { NonExistentModule } from 'this-module-does-not-exist'; // Build error: Cannot find module
 
 interface Item {
   url: {
@@ -46,8 +47,7 @@ export const Default = ({ params, fields }: TitleProps): JSX.Element => {
   const datasource = fields?.data?.datasource || fields?.data?.contextItem;
 
   // Intentional build error for testing CI/CD pipeline
-  const result = nonExistentFunction(); // Build error: Cannot find name 'nonExistentFunction'
-  console.log('Result:', result);
+  console.log('Module:', NonExistentModule);
 
   // Use the route's Title field for proper editing support with chrometype="field"
   const titleField: TextField = page.layout.sitecore.route?.fields?.Title as TextField;
