@@ -29,11 +29,11 @@ interface TitleProps extends ComponentProps {
 interface ComponentContentProps {
   id?: string;
   styles?: string;
-  children: React.ReactNode;
+  children:         React.ReactNode;
 }
 
 const ComponentContent = ({ id, styles = '', children }: ComponentContentProps): JSX.Element => (
-  <div className={`component title ${styles.trim()}`} id={id}>
+  <div   className={`component title ${styles.trim()}`} id={id}>
     <div className="component-content">
       <div className="field-title">{children}</div>
     </div>
