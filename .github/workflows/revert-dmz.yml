@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       commit_sha:
-        description: 'Commit SHA to remove (leave empty to remove last commit)'
-        required: false
+        description: 'Commit SHA to revert (required)'
+        required: true
         type: string
       reason:
         description: 'Reason for removing commit'
@@ -40,18 +40,8 @@ jobs:
       - name: Determine commit to remove
         id: determine-commit
         run: |
-          # Switch to dmz branch first
-          git checkout dmz
-          git fetch origin dmz
-          git reset --hard origin/dmz
-          
-          if [ -n "${{ github.event.inputs.commit_sha }}" ]; then
-            COMMIT_TO_REMOVE="${{ github.event.inputs.commit_sha }}"
-            echo "Using specified commit: $COMMIT_TO_REMOVE"
-          else
-            COMMIT_TO_REMOVE=$(git rev-parse HEAD)
-            echo "Using latest commit: $COMMIT_TO_REMOVE"
-          fi
+          COMMIT_TO_REVERT="${{ github.event.inputs.commit_sha }}"
+          echo "Using specified commit: $COMMIT_TO_REVERT"
           
           # Verify commit exists
           if ! git cat-file -e "$COMMIT_TO_REMOVE^{commit}" 2>/dev/null; then
