@@ -288,4 +288,4 @@ jobs:
           echo "3. Push the fixes to dmz branch" >> $GITHUB_STEP_SUMMARY
           echo "4. The validation will run automatically" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Alternative:** Use the 'Revert DMZ Branch' workflow to revert problematic commits." >> $GITHUB_STEP_SUMMARY
+          echo "**Alternative:** Use the 'Rebase DMZ Branch' workflow to remove problematic commits." >> $GITHUB_STEP_SUMMARY
