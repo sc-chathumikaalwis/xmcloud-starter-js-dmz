@@ -59,6 +59,7 @@ jobs:
 
       - name: Lint and format check
         run: |
+          set -e  # Exit immediately if any command fails
           echo "Running linting and formatting checks..."
 
           # Check each enabled starter
@@ -68,21 +69,23 @@ jobs:
               cd "$starter"
               
               # Run linting
-              if npm run lint 2>/dev/null; then
-                echo "✅ Linting passed for $starter"
-              else
+              echo "Running lint for $starter..."
+              if ! npm run lint; then
                 echo "❌ Linting failed for $starter"
+                echo "::error::Linting failed for $starter"
                 exit 1
               fi
+              echo "✅ Linting passed for $starter"
               
               # Check formatting
-              if npm run format:check 2>/dev/null; then
-                echo "✅ Formatting check passed for $starter"
-              else
+              echo "Running format check for $starter..."
+              if ! npm run format:check; then
                 echo "❌ Formatting check failed for $starter"
                 echo "Run 'npm run prettier' to fix formatting issues"
+                echo "::error::Formatting check failed for $starter"
                 exit 1
               fi
+              echo "✅ Formatting check passed for $starter"
               
               cd ../..
             fi
@@ -155,6 +158,7 @@ jobs:
           NEXT_PUBLIC_PERSONALIZE_SCOPE: ${{ vars.NEXT_PUBLIC_PERSONALIZE_SCOPE }}
           PERSONALIZE_MIDDLEWARE_EDGE_TIMEOUT: ${{ vars.PERSONALIZE_MIDDLEWARE_EDGE_TIMEOUT || '1000' }}
         run: |
+          set -e  # Exit immediately if any command fails
           echo "Building all enabled starters..."
           echo "Sitecore Environment Variables:"
           echo "  SITECORE_EDGE_URL: ${SITECORE_EDGE_URL:+[SET]}"
@@ -169,12 +173,13 @@ jobs:
               echo "Building $starter..."
               cd "$starter"
               
-              if npm run build; then
-                echo "✅ Build successful for $starter"
-              else
+              echo "Running build for $starter..."
+              if ! npm run build; then
                 echo "❌ Build failed for $starter"
+                echo "::error::Build failed for $starter"
                 exit 1
               fi
+              echo "✅ Build successful for $starter"
               
               cd ../..
             fi
@@ -182,6 +187,7 @@ jobs:
 
       - name: Run tests
         run: |
+          set -e  # Exit immediately if any command fails
           echo "Running tests for all starters..."
 
           # Test each enabled starter
@@ -189,16 +195,19 @@ jobs:
             if [ -d "$starter" ]; then
               echo "Testing $starter..."
               cd "$starter"
+              
               # Check if test script exists, if not fail the workflow
               if grep -q '"test"' package.json; then
-                if npm test; then
-                  echo "✅ Tests passed for $starter"
-                else
+                echo "Running tests for $starter..."
+                if ! npm test; then
                   echo "❌ Tests failed for $starter"
+                  echo "::error::Tests failed for $starter"
                   exit 1
                 fi
+                echo "✅ Tests passed for $starter"
               else
                 echo "❌ No test script found for $starter - tests are mandatory"
+                echo "::error::No test script found for $starter"
                 exit 1
               fi
 
