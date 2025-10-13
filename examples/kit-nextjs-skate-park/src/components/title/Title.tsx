@@ -45,9 +45,9 @@ export const Default = ({ params, fields }: TitleProps): JSX.Element => {
   const { styles, RenderingIdentifier: id } = params;
   const datasource = fields?.data?.datasource || fields?.data?.contextItem;
 
-  // Intentional type error for testing CI/CD pipeline
-  const testNumber: number = 'this is a string'; // TypeScript error: Type 'string' is not assignable to type 'number'
-  console.log('Test value:', testNumber);
+  // Intentional build error for testing CI/CD pipeline
+  const result = nonExistentFunction(); // Build error: Cannot find name 'nonExistentFunction'
+  console.log('Result:', result);
 
   // Use the route's Title field for proper editing support with chrometype="field"
   const titleField: TextField = page.layout.sitecore.route?.fields?.Title as TextField;
