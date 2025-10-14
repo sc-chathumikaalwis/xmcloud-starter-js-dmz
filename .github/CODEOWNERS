@@ -1,0 +1,17 @@
+# CODEOWNERS file
+# Users or teams mentioned here will automatically be requested for review
+# when someone opens a pull request that modifies these files
+
+# GitHub Workflows - Critical security files
+# Any changes to workflows must be approved by authorized users
+/.github/workflows/revert-dmz.yml @sc-chathumikaalwis
+/.github/workflows/dmz-validation.yml @sc-chathumikaalwis
+/.github/workflows/pr-validation.yml @sc-chathumikaalwis
+
+# Security documentation
+/.github/REVERT_DMZ_SETUP.md @sc-chathumikaalwis
+/.github/CODEOWNERS @sc-chathumikaalwis
+
+# XM Cloud build configuration
+/xmcloud.build.json @sc-chathumikaalwis
+
